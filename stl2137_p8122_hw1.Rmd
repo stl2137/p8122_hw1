@@ -123,6 +123,42 @@ kable(q2_part_d_table, col.names = c("Test/Visit", "$Y_0$", "$Y_1$", "Treatment"
 
 ```
 
+where Y = 1 if the patient blood pressure test comes back normal & Y = 0 if the patient blood pressure test comes back not normal and where A = 1 if the patient receives a high dose & A = 0 if the patient receives a low dose. 
+
+$E[Y_0] - E[Y_1]$
+= $\frac{1}{1} - \frac{0}{1} = 1$
+
+As seen by the calculation above, the low dose treatment is on average better than the high dose treatment. 
+
+### Part E
+Is SUTVA plausible? If so, explain why briefly. If not, offer an assumption that, if true, would make SUTVA plausible. (Remember that SUTVA has two parts).
+
+SUTVA is not plausible because even though the outcome is set up as a binary outcome (blood pressure being normal or not normal), there are actually three outcomes (low, perfect, and high blood pressure). Thus, this binary outcome system violates the assumption that there is only one version of the potential outcome, since not normal blood pressure encompasses both low and high blood pressure. 
+
+SUTVA is also not plausible because the prior tests/visits the patient influences the treatment the doctor prescribes next. 
+
+*offer an assumption*
+
+### Part F
+Why must SUTVA be plausible in order for us to use the potential outcome framework?
+
+The assumptions of SUTVA state that the intervention is well-defined and therefore can only have one version of potential outcomes and that the unit's outcome is not influenced by another unit's exposure or treatment. Thus, to utilize the potential outcome framework and calculate average causal effect, we need to know that outcome we observe is due to the specific exposure we want to manipulate. We also need to know that the outcome's exposure is the true exposure of interest and not a different exposure or influenced by other unit's outcomes or treatments. Only by fulfilling the two assumptions can we confidently know that the exposure of interest and the outcomes can be analyzed by a valid causal effect analysis. 
+
+### Part G
+Does the physician’s assignment mechanism appear to be probabilistic? Individualistic? Unconfounded? and controlled? Explain in one sentence each.
+
+* It does not appear to be individualistic because each treatment assignment utilizes the prior knowledge from previous tests/visits to help the patient obtain the perfect blood pressure. 
+
+* It appears to be probabilistic because after the patient experienced low blood pressure and was placed on a high dose treatment, the patient then had high blood pressure. After being put on the low dose treatment, the patient then had perfect blood pressure. This shows that the patient's given treatment per visit was based on the outcome from that visit. 
+
+* It does not appear to be unconfounded because the treatment assignment is dependent on the patient's outcome for that test/visit. Although this doctor is not the perfect doctor, he is assignment treatment based on whether he believes this treatment will benefit the patient. This violates the definition for unconfoundedness where the assignment mechanism does not depend on the potential outcome. 
+
+* It is not controlled because the doctor is tracking the patient's blood pressure each time and assigning treatment based off observations. 
+
+### Part H
+How would you assign in this single subject study the treatment differently in order to validly compute the causal effect of treatment.
+
+
 
 
 
