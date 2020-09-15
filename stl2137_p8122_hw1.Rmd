@@ -1,0 +1,115 @@
+---
+title: "stl2137_p8122_hw1"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+# Question 1
+
+### Part A
+For all individuals calculate the effect of treatment on the outcome and interpret.
+
+```{r}
+hw1_part_a_table <- tibble(
+  Individual = c(1:8),
+  y_0 = c(0, 1, 0, 1, 1, 0, 1, 0),
+  y_1 = c(0, 0, 1, 0, 0, 1, 0, 0),
+  y_diff = c(0, 1, -1, 1, 1, -1, 1, 0)
+) 
+
+kable(hw1_part_a_table, col.names = c("Individual", "$Y_0$", "$Y_1$", "$Y_0 - Y_1$"))
+```
+
+* For individuals 2, 4, 5, and 7, Treatment 0 had a positive causal effect. 
+
+* For individuals 3 and 6, Treatment 0 had a negative causal effect. 
+
+* For individuals 1 and 8, neither Treatment 0 or Treatment 1 had a causal effect. 
+
+### Part B
+Calculate the average causal effect of treatment on the outcome and interpret.
+
+
+$E[Y_0] - E[Y_1]$
+
+= $\frac{4}{8} - \frac{2}{8} = \frac{1}{4}$
+
+* Treatment 0 is better on average than treatment 1.
+
+### Part C
+Calculate the association of the treatment with the outcome under the following treatment assignment for subjects $i = 1,..,8: A_1 = 1,A_2 = 0,A_3 = 1,A_4 = 1,A_5 = 0,A_6 = 0,A_7 = 0,A_8 = 1$. Interpret the result, compare with the effect computed in question 1b.
+
+```{r}
+hw1_part_a_table <- tibble(
+  Individual = c(1:8),
+  y_0 = c(0, 1, 0, 1, 1, 0, 1, 0),
+  y_1 = c(0, 0, 1, 0, 0, 1, 0, 0),
+  trt = c("$A_1$ = 1", "$A_2$ = 0", "$A_3$ = 1", "$A_4$ = 1", "$A_5$ = 0", "$A_6$ = 0", "$A_7$ = 0", "$A_8$ = 1")
+) 
+
+kable(hw1_part_a_table, col.names = c("Individual", "$Y_0$", "$Y_1$", "Treatment"))
+```
+
+$E[Y|A = 0] - E[Y|A = 1]$
+
+= $\frac{3}{4} - \frac{1}{4} = \frac{1}{2}$
+
+The difference in observed group means and apparent effects between $Y_0$ and $Y_1$ is $\frac{1}{2}$, meaning that Treatment 0 is better on average. The derived apparent effect is higher than the ACE of $\frac{1}{4}$ from part 1b.
+
+### Part D
+Show a random assignment of the treatment for this population. Explain your work. Compute the association of the treatment with the outcome under the random assignment and compare with the treatment effect computed in question 1b.
+
+```{r, echo = TRUE}
+set.seed(21)
+rbinom(8, 1, 0.5)
+```
+
+```{r}
+part_d_table <- tibble(
+  Individual = c(1:8),
+  y_0 = c(0, 1, 0, 1, 1, 0, 1, 0),
+  y_1 = c(0, 0, 1, 0, 0, 1, 0, 0),
+  trt = c("$A_1$ = 1", "$A_2$ = 0", "$A_3$ = 1", "$A_4$ = 0", "$A_5$ = 1", "$A_6$ = 1", "$A_7$ = 0", "$A_8$ = 0")
+) 
+
+kable(part_d_table, col.names = c("Individual", "$Y_0$", "$Y_1$", "Treatment"))
+```
+
+$E[Y|A = 0] - E[Y|A = 1]$
+
+= $\frac{3}{4} - \frac{2}{4} = \frac{1}{4}$
+
+The difference in observed group means and apparent effects between $Y_0$ and $Y_1$ is $\frac{1}{4}$, meaning that Treatment 0 is better on average. The ACE derived from part 1b states that the causal effect is also $\frac{1}{4}$. In this case, the difference in observed group means and the average causal effect are the same and come to the same conclusion that Treatment 0 is better on average.
+
+# Question 2
+
+### Part A
+What are the units?
+
+
+The units for this problem are each of the blood pressure tests performed per visit. 
+
+### Part B
+What is the treatment?
+
+
+The treatment is dosage of medication. 
+
+### Part C
+What are the potential outcomes?
+
+
+The potential outcomes are that the patient's blood pressure levels are high, low, or perfect. 
+
+### Part D
+Show the calculation that the physician conducts to conclude that the patient should remain on the low dose (compute the causal effect of the treatment).
+
+
+
